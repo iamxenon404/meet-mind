@@ -174,6 +174,7 @@ Turn any client call or meeting recording into:
 
 
 
-git remote add origin https://github.com/iamxenon404/meet-mind.git
-git branch -M main
-git push -u origin main
+
+
+
+uypdated
