@@ -6,6 +6,7 @@
 import CTA from "./components/sections/CTA";
 import Demo from "./components/sections/Demo";
 import Hero from "./components/sections/Hero";
+import Solution from "./components/sections/Solution";
 
 export default function Home() {
   return (
