@@ -178,3 +178,7 @@ Turn any client call or meeting recording into:
 
 
 uypdated
+
+git remote add origin https://github.com/iamxenon404/DTA-app.git
+git branch -M main
+git push -u origin main
