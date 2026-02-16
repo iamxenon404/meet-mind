@@ -1,6 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import WaitlistForm from "../forms/WaitlistForm";
 // import WaitlistForm from "./WaitlistForm"; // Adjust this path to your file
 
 export default function Hero() {
