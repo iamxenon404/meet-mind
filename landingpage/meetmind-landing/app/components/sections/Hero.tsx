@@ -1,7 +1,8 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { supabase } from "@/lib/supabaseClient"; // Double-check your path
+import { supabase } from "../lib/supabaseClient";
+// import { supabase } from "@/lib/supabaseClient"; // Double-check your path
 
 export default function Hero() {
   const [email, setEmail] = useState("");
