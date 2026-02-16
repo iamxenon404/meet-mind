@@ -64,19 +64,57 @@ export default function Hero({ isModalOpen, setIsModalOpen }: HeroProps) {
       </motion.div>
 
       {/* Dashboard Preview - The Adaptive Card */}
-      <motion.div 
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-20 w-full max-w-5xl aspect-[16/9] rounded-2xl border flex items-center justify-center overflow-hidden relative
-                   bg-zinc-100/50 border-zinc-200 shadow-2xl shadow-zinc-200/50
-                   dark:bg-zinc-900 dark:border-white/10 dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)]"
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-sky-500/5 to-transparent pointer-events-none" />
-        <span className="text-zinc-400 dark:text-zinc-700 italic font-mono text-xs tracking-widest uppercase">
-          Agency Dashboard Preview
-        </span>
-      </motion.div>
+     <div className="relative w-full h-full p-6 flex gap-6 overflow-hidden">
+  {/* Left Column: The Meeting Feed */}
+  <div className="w-1/3 space-y-4 opacity-50 dark:opacity-30 blur-[1px]">
+    {[1, 2, 3].map((i) => (
+      <div key={i} className="h-20 bg-zinc-200 dark:bg-zinc-800 rounded-xl" />
+    ))}
+  </div>
+
+  {/* Center: The AI Highlight (The Focus) */}
+  <div className="flex-1 bg-white dark:bg-zinc-800 rounded-2xl border-2 border-sky-500/50 shadow-[0_0_30px_rgba(14,165,233,0.1)] p-6 relative">
+    <div className="flex items-center gap-3 mb-6">
+      <div className="w-10 h-10 bg-sky-500 rounded-full animate-pulse" />
+      <div className="space-y-2">
+        <div className="w-32 h-3 bg-zinc-200 dark:bg-zinc-700 rounded" />
+        <div className="w-20 h-2 bg-zinc-100 dark:bg-zinc-600 rounded" />
+      </div>
+    </div>
+    
+    <div className="space-y-4">
+      <div className="p-4 bg-sky-500/10 border border-sky-500/20 rounded-xl">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-[10px] font-bold text-sky-500 uppercase">AI Task Extraction</span>
+          <span className="text-[10px] text-zinc-400">98% Accuracy</span>
+        </div>
+        <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100 italic">
+          "Finalize the SEO audit for the client by EOD Tuesday."
+        </p>
+      </div>
+      
+      <div className="flex gap-2">
+         <div className="flex-1 h-10 bg-zinc-100 dark:bg-zinc-700 rounded-lg flex items-center px-3 gap-2">
+            <div className="w-4 h-4 rounded bg-sky-500/50" />
+            <div className="w-12 h-2 bg-zinc-300 dark:bg-zinc-500 rounded" />
+         </div>
+         <div className="w-10 h-10 bg-zinc-900 dark:bg-sky-500 rounded-lg" />
+      </div>
+    </div>
+  </div>
+
+  {/* Right Column: The Integrations */}
+  <div className="w-1/4 space-y-4 pt-12">
+    <div className="p-4 bg-zinc-100 dark:bg-zinc-800/50 rounded-2xl border border-zinc-200 dark:border-white/5">
+        <div className="w-6 h-6 bg-zinc-300 dark:bg-zinc-700 rounded mb-2" />
+        <div className="w-full h-1.5 bg-zinc-200 dark:bg-zinc-700 rounded" />
+    </div>
+    <div className="p-4 bg-zinc-100 dark:bg-zinc-800/50 rounded-2xl border border-zinc-200 dark:border-white/5 opacity-50">
+        <div className="w-6 h-6 bg-zinc-300 dark:bg-zinc-700 rounded mb-2" />
+        <div className="w-full h-1.5 bg-zinc-200 dark:bg-zinc-700 rounded" />
+    </div>
+  </div>
+</div>
 
       {/* Modal - Adaptive Design */}
       <AnimatePresence>
