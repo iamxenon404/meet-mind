@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabaseClient"; // Adjust path based on your folders
+// import { supabase } from "@/lib/supabaseClient"; // Adjust path based on your folders
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "../lib/supabaseClient";
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
