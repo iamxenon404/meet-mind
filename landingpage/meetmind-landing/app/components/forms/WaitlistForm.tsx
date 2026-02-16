@@ -20,7 +20,7 @@ export default function WaitlistForm() {
       .insert([
         { 
           email: email,
-          source: "MeetMind", // Your "Tag" for reuse
+        //   source: "MeetMind", 
           status: "pending" 
         }
       ]);
