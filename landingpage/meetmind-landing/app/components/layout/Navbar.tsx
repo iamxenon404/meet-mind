@@ -17,6 +17,12 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Fix: Defined the missing function
+  const handleMobileJoinClick = () => {
+    setIsOpen(false);
+    onJoinClick();
+  };
+
   const navLinks = [
     { name: "Features", href: "#features", icon: "🚀" },
     { name: "How it Works", href: "#how-it-works", icon: "⚙️" },
@@ -27,7 +33,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
     <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-white/5 bg-zinc-950/70 backdrop-blur-xl">
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         
-        {/* Logo with a pulse effect */}
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group relative z-[110]">
           <div className="relative">
             <div className="absolute -inset-1 bg-indigo-500 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -40,8 +46,8 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
           </span>
         </Link>
 
-        {/* Desktop - Interactive Nav Items */}
-        <div className="hidden md:flex items-center gap-1 p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md transition-all hover:border-white/20">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-1 p-1 bg-white/5 border border-white/10 rounded-full">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
@@ -53,21 +59,20 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
           ))}
         </div>
 
-        {/* Desktop - Action Button */}
+        {/* Desktop Action */}
         <div className="hidden md:block">
           <button 
             onClick={onJoinClick}
-            className="group relative px-6 py-2.5 font-bold text-black rounded-full overflow-hidden transition-all active:scale-95"
+            className="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-50 transition-colors active:scale-95"
           >
-            <span className="absolute inset-0 bg-white group-hover:bg-indigo-50 transition-colors"></span>
-            <span className="relative z-10 text-sm">Join Waitlist</span>
+            Join Waitlist
           </button>
         </div>
 
-        {/* Mobile - Cyberpunk Toggle Button */}
+        {/* Mobile Toggle */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden relative z-[110] w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 active:scale-90 transition-transform"
+          className="md:hidden relative z-[110] w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10"
         >
           <div className="flex flex-col gap-1 w-5">
             <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 6 : 0 }} className="w-full h-0.5 bg-white rounded-full" />
@@ -76,14 +81,14 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
           </div>
         </button>
 
-        {/* Mobile - Floating "Command Center" Dropdown */}
+        {/* Mobile Dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className="absolute top-20 left-4 right-4 bg-zinc-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-[105] overflow-hidden p-3"
+              className="absolute top-20 left-4 right-4 bg-zinc-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl z-[105] p-3"
             >
               <div className="grid grid-cols-1 gap-1">
                 {navLinks.map((link, i) => (
@@ -98,8 +103,8 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
                       onClick={() => setIsOpen(false)}
                       className="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-all group"
                     >
-                      <span className="text-2xl group-hover:scale-110 transition-transform">{link.icon}</span>
-                      <span className="font-semibold text-zinc-200 group-hover:text-white transition-colors">{link.name}</span>
+                      <span className="text-2xl">{link.icon}</span>
+                      <span className="font-semibold text-zinc-200">{link.name}</span>
                     </Link>
                   </motion.div>
                 ))}
@@ -108,10 +113,10 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               <div className="mt-2 pt-2 border-t border-white/5">
                 <button 
                   onClick={handleMobileJoinClick}
-                  className="w-full flex items-center justify-between p-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl transition-all group active:scale-[0.98]"
+                  className="w-full flex items-center justify-between p-4 bg-indigo-600 rounded-xl transition-all active:scale-[0.98]"
                 >
                   <span className="font-bold text-white uppercase tracking-wider text-sm">Join Priority Access</span>
-                  <span className="text-white/70 group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="text-white/70">→</span>
                 </button>
               </div>
             </motion.div>
