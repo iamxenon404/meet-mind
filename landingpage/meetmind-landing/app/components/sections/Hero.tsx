@@ -1,12 +1,17 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react"; // Added Dispatch and SetStateAction
 import WaitlistForm from "../forms/WaitlistForm";
-// import WaitlistForm from "./WaitlistForm"; // Adjust this path to your file
 
-export default function Hero() {
-  const [isOpen, setIsOpen] = useState(false);
+// 1. Define the shape of the props
+interface HeroProps {
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+}
 
+// 2. Pass the props into the component
+export default function Hero({ isModalOpen, setIsModalOpen }: HeroProps) {
+  
   return (
     <section className="relative flex flex-col items-center justify-center px-6 pt-32 pb-20 overflow-hidden text-center bg-zinc-950 min-h-[80vh]">
       {/* Subtle Background Glow */}
@@ -23,7 +28,7 @@ export default function Hero() {
         
         <h1 className="max-w-4xl mt-6 text-5xl font-bold tracking-tight text-white md:text-7xl">
           Turn every client call into <br /> 
-          <span className="text-transparent bg-clip-text bg-gradient-r from-indigo-400 to-cyan-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
             billable action items.
           </span>
         </h1>
@@ -32,10 +37,10 @@ export default function Hero() {
           MeetMind automates the gap between "meeting" and "doing." Stop losing requirements in transcriptions—start syncing tasks directly to your agency's workflow.
         </p>
 
-        {/* Action Button */}
+        {/* Action Button - Updated to use the prop */}
         <div className="flex flex-col items-center justify-center w-full gap-3 mx-auto mt-10 sm:flex-row">
           <button 
-            onClick={() => setIsOpen(true)}
+            onClick={() => setIsModalOpen(true)}
             className="w-full px-8 py-4 font-bold text-black transition-all bg-white rounded-xl sm:w-auto hover:bg-zinc-200 active:scale-95 shadow-lg shadow-white/10"
           >
             Join Priority Access
@@ -47,9 +52,9 @@ export default function Hero() {
         </p>
       </motion.div>
 
-      {/* Modal Overlay for the Waitlist Form */}
+      {/* Modal Overlay - Updated to use isModalOpen from props */}
       <AnimatePresence>
-        {isOpen && (
+        {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -58,7 +63,7 @@ export default function Hero() {
               className="relative w-full max-w-lg p-8 border bg-zinc-900 border-zinc-800 rounded-2xl shadow-2xl"
             >
               <button 
-                onClick={() => setIsOpen(false)}
+                onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
               >
                 ✕
@@ -67,14 +72,12 @@ export default function Hero() {
               <h3 className="mb-2 text-2xl font-bold text-white">Get Early Access</h3>
               <p className="mb-6 text-zinc-400 text-sm">Be the first to know when we launch the private beta.</p>
               
-              {/* Your separate component is called here */}
               <WaitlistForm /> 
             </motion.div>
           </div>
         )}
       </AnimatePresence>
 
-      {/* Hero Image/Demo Placeholder */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
