@@ -19,7 +19,7 @@ export default function Hero() {
       .from("MMwaitlist")
       .insert([{ 
         email: email, 
-        source: "MeetMind",
+        // source: "MeetMind",
         status: "pending" 
       }]);
 
