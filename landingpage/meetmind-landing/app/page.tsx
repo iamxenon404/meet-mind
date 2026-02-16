@@ -9,7 +9,7 @@ import Solution from "./components/sections/Solution";
 export default function Home() {
   return (
     <main>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Hero />
       <Problem />
       <Solution />
