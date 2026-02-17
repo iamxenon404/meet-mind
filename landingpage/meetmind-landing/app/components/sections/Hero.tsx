@@ -13,13 +13,41 @@ export default function Hero({ isModalOpen, setIsModalOpen }: HeroProps) {
     <section className="relative flex flex-col items-center justify-center px-4 pt-32 pb-20 overflow-hidden text-center transition-colors duration-500 bg-white dark:bg-zinc-950 min-h-screen">
       
       {/* 1. ANIMATED BACKGROUND EFFECT */}
-      <div className="absolute inset-0 z-0">
-        {/* The Radial Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-500/20 dark:from-sky-500/10 via-transparent to-transparent" />
-        
-        {/* The Grid Effect */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-      </div>
+<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+  {/* 1. Base Radial Glow - Increased spread for a softer feel */}
+  <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-full h-full 
+                  bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] 
+                  from-sky-500/20 dark:from-sky-500/15 via-transparent to-transparent blur-3xl" />
+
+  {/* 2. The Animated Grid */}
+  <div className="absolute inset-0 
+                  bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] 
+                  bg-[size:60px_60px] 
+                  [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" 
+  />
+
+  {/* 3. The "Light Beam" Effect - Moving light across the grid lines */}
+  <div className="absolute inset-0 bg-transparent">
+    <motion.div 
+      initial={{ backgroundPosition: "0% 0%" }}
+      animate={{ backgroundPosition: "100% 100%" }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="absolute inset-0 opacity-[0.15] dark:opacity-[0.1]"
+      style={{
+        backgroundImage: `linear-gradient(45deg, transparent 45%, #0ea5e9 50%, transparent 55%)`,
+        backgroundSize: '200% 200%'
+      }}
+    />
+  </div>
+
+  {/* 4. Fine Grain/Noise Texture (Optional but recommended for "Elite" feel) */}
+  <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none brightness-100 contrast-150"
+       style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} 
+  />
+  
+  {/* 5. Bottom Fade - Smooth transition to the next section */}
+  <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white dark:from-zinc-950 to-transparent" />
+</div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
