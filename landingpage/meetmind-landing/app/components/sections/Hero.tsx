@@ -20,41 +20,47 @@ export default function Hero({ isModalOpen, setIsModalOpen }: HeroProps) {
     <section className="relative flex flex-col items-center justify-center px-4 pt-32 pb-20 overflow-hidden text-center transition-colors duration-500 bg-white dark:bg-zinc-950 min-h-screen">
       
       {/* 1. INTERACTIVE BACKGROUND GRID */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Radial Glow */}
-        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-500/20 dark:from-sky-500/15 via-transparent to-transparent blur-3xl" />
+     {/* 1. AMBIENT LIQUID BACKGROUND */}
+<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+  {/* The Main Light Anchor */}
+  <div className="absolute inset-0 bg-white dark:bg-zinc-950 transition-colors duration-500" />
 
-        {/* Interactive Cells */}
-        <div 
-          className="grid w-full h-full opacity-60 dark:opacity-40 pointer-events-auto [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"
-          style={{
-            gridTemplateColumns: `repeat(${columns}, 1fr)`,
-            gridTemplateRows: `repeat(${rows}, 1fr)`,
-          }}
-        >
-          {[...Array(totalBoxes)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="border-[0.5px] border-zinc-200 dark:border-zinc-800/50"
-              whileHover={{
-                backgroundColor: "rgba(14, 165, 233, 0.20)",
-                transition: { duration: 0 },
-              }}
-              initial={{ backgroundColor: "rgba(14, 165, 233, 0)" }}
-              animate={{ backgroundColor: "rgba(14, 165, 233, 0)" }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-            />
-          ))}
-        </div>
+  {/* Large Drifting Orb 1 (Sky Blue) */}
+  <motion.div
+    animate={{
+      x: [0, 100, 0],
+      y: [0, 50, 0],
+    }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full 
+               bg-sky-400/20 dark:bg-sky-600/10 blur-[120px]"
+  />
 
-        {/* Grain Texture */}
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none brightness-100 contrast-150"
-             style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} 
-        />
-        
-        {/* Bottom Fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white dark:from-zinc-950 to-transparent" />
-      </div>
+  {/* Large Drifting Orb 2 (Indigo/Purple - Adds Depth) */}
+  <motion.div
+    animate={{
+      x: [0, -80, 0],
+      y: [0, 120, 0],
+    }}
+    transition={{
+      duration: 25,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    className="absolute top-[20%] -right-[5%] w-[40%] h-[60%] rounded-full 
+               bg-indigo-400/10 dark:bg-indigo-600/5 blur-[100px]"
+  />
+
+  {/* Substrate Grid (Very Faint) */}
+  <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] brightness-100 contrast-150" />
+  
+  {/* The "Floor" Fade */}
+  <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white dark:from-zinc-950 to-transparent" />
+</div>
 
       {/* HERO CONTENT */}
       <motion.div
