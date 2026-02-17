@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Dispatch, SetStateAction } from "react";
 import WaitlistForm from "../forms/WaitlistForm";
+import PreviewCard from "../ui/PreviewCard";
 // import PreviewCard from "./ui/PreviewCard";
 
 interface HeroProps {
