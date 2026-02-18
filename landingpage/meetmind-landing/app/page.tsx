@@ -4,7 +4,7 @@ import { useState } from "react";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import CTA from "./components/sections/CTA";
-import Demo from "./components/sections/Demo";
+// import Demo from "./components/sections/Demo";
 import Hero from "./components/sections/Hero";
 // import Problem from "./components/sections/Problem";
 // import Solution from "./components/sections/Solution";
