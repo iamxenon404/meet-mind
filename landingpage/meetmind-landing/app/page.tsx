@@ -6,7 +6,7 @@ import Navbar from "./components/layout/Navbar";
 import CTA from "./components/sections/CTA";
 import Demo from "./components/sections/Demo";
 import Hero from "./components/sections/Hero";
-import Problem from "./components/sections/Problem";
+// import Problem from "./components/sections/Problem";
 import Solution from "./components/sections/Solution";
 import Features from "./components/sections/Features";
 import TrustBar from "./components/sections/TrustBar";
