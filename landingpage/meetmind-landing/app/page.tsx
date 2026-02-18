@@ -30,7 +30,7 @@ export default function Home() {
       <HowItWorks />
       <Comparison />
       <FAQ />
-<CTA setIsModalOpen={setIsModalOpen} />
+      <CTA setIsModalOpen={setIsModalOpen} />
 
       {/* <Problem /> */}
       {/* <Solution /> */}
