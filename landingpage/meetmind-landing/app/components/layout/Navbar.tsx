@@ -12,19 +12,39 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // 1. Handle background blur on scroll
+  // 1. Change appearance on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 2. Close mobile menu on resize
+  // 2. Prevent mobile menu ghosting on desktop resize
   useEffect(() => {
     const handleResize = () => { if (window.innerWidth >= 768) setIsOpen(false); };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // 3. Custom Smooth Scroll Logic
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const elem = document.getElementById(targetId);
+    
+    if (elem) {
+      // Offset by 80px to account for the fixed navbar height
+      const offsetTop = elem.getBoundingClientRect().top + window.scrollY - 80;
+
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+
+      // Close mobile menu after clicking
+      setIsOpen(false);
+    }
+  };
 
   const handleMobileJoinClick = () => {
     setIsOpen(false);
@@ -33,7 +53,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
 
   const navLinks = [
     { name: "Features", href: "#features" },
-    { name: "Workflow", href: "#workflow" }, // Matches the id we set in HowItWorks
+    { name: "Workflow", href: "#workflow" },
     { name: "Pricing", href: "#pricing" },
     { name: "FAQ", href: "#faq" },
   ];
@@ -49,7 +69,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group relative z-[110]">
-          <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20">
+          <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center shadow-lg shadow-sky-500/20 group-hover:rotate-6 transition-transform">
             <span className="text-white font-black text-sm">M</span>
           </div>
           <span className="text-xl font-bold tracking-tighter text-zinc-900 dark:text-white">
@@ -63,6 +83,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
             <a 
               key={link.name} 
               href={link.href} 
+              onClick={(e) => scrollToSection(e, link.href)}
               className="px-5 py-1.5 text-sm font-bold transition-all text-zinc-600 hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400 rounded-full hover:bg-white dark:hover:bg-white/5"
             >
               {link.name}
@@ -84,6 +105,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
         <button 
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden relative z-[110] p-2 text-zinc-900 dark:text-white"
+          aria-label="Toggle Menu"
         >
           <div className="flex flex-col gap-1.5 w-6 items-end">
             <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }} className="w-full h-0.5 bg-current rounded-full" />
@@ -92,16 +114,17 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
           </div>
         </button>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Dropdown - Full Screen Overlay */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute top-0 left-0 w-full h-screen md:hidden z-[105] bg-white dark:bg-zinc-950 px-6 pt-24"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-0 w-full h-screen md:hidden z-[105] bg-white dark:bg-zinc-950 px-6 pt-32"
             >
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-6">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.name}
@@ -111,8 +134,8 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
                   >
                     <a
                       href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-4xl font-black tracking-tighter text-zinc-900 dark:text-white hover:text-sky-500 transition-colors"
+                      onClick={(e) => scrollToSection(e, link.href)}
+                      className="text-5xl font-black tracking-tighter text-zinc-900 dark:text-white hover:text-sky-500 transition-colors"
                     >
                       {link.name}
                     </a>
@@ -122,12 +145,12 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
                 <motion.div 
                   initial={{ opacity: 0 }} 
                   animate={{ opacity: 1 }} 
-                  transition={{ delay: 0.4 }}
-                  className="mt-8 pt-8 border-t border-zinc-100 dark:border-white/5"
+                  transition={{ delay: 0.5 }}
+                  className="mt-12 pt-12 border-t border-zinc-100 dark:border-white/5"
                 >
                   <button 
                     onClick={handleMobileJoinClick}
-                    className="w-full py-5 rounded-2xl text-xl font-black bg-sky-500 text-white shadow-2xl shadow-sky-500/20"
+                    className="w-full py-6 rounded-3xl text-2xl font-black bg-sky-500 text-white shadow-2xl shadow-sky-500/30 active:scale-[0.98] transition-transform"
                   >
                     Join Priority Access
                   </button>
