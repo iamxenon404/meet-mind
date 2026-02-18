@@ -21,7 +21,7 @@ export default function Home() {
       {/* 3. Pass both the state and setter to the Hero */}
       <Hero isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
 
-      <Problem />
+      {/* <Problem /> */}
       <Solution />
       <Demo />
       <CTA />
