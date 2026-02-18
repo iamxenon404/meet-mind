@@ -33,15 +33,11 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
     const elem = document.getElementById(targetId);
     
     if (elem) {
-      // Offset by 80px to account for the fixed navbar height
       const offsetTop = elem.getBoundingClientRect().top + window.scrollY - 80;
-
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
       });
-
-      // Close mobile menu after clicking
       setIsOpen(false);
     }
   };
@@ -77,7 +73,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
           </span>
         </Link>
 
-        {/* Desktop Nav - Pill Shape */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1 p-1 bg-zinc-100/50 dark:bg-white/5 border border-zinc-200/50 dark:border-white/10 rounded-full backdrop-blur-md">
           {navLinks.map((link) => (
             <a 
@@ -114,47 +110,50 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
           </div>
         </button>
 
-        {/* Mobile Dropdown - Full Screen Overlay */}
+        {/* Mobile Dropdown - Floating Card View */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-0 w-full h-screen md:hidden z-[105] bg-white dark:bg-zinc-950 px-6 pt-32"
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute top-[84px] left-4 right-4 md:hidden z-[105]"
             >
-              <div className="flex flex-col gap-6">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    <a
-                      href={link.href}
-                      onClick={(e) => scrollToSection(e, link.href)}
-                      className="text-5xl font-black tracking-tighter text-zinc-900 dark:text-white hover:text-sky-500 transition-colors"
+              <div className="mx-auto w-full max-w-[480px] p-4 rounded-[2.5rem] border shadow-2xl 
+                              bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl
+                              border-zinc-200 dark:border-white/10 shadow-sky-500/5">
+                <div className="flex flex-col gap-1">
+                  {navLinks.map((link, i) => (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
                     >
-                      {link.name}
-                    </a>
-                  </motion.div>
-                ))}
-                
-                <motion.div 
-                  initial={{ opacity: 0 }} 
-                  animate={{ opacity: 1 }} 
-                  transition={{ delay: 0.5 }}
-                  className="mt-12 pt-12 border-t border-zinc-100 dark:border-white/5"
-                >
+                      <a
+                        href={link.href}
+                        onClick={(e) => scrollToSection(e, link.href)}
+                        className="flex items-center gap-4 p-4 text-lg font-bold rounded-2xl transition-all
+                                   text-zinc-600 hover:bg-zinc-100 hover:text-sky-600
+                                   dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-sky-400"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-sky-500" />
+                        {link.name}
+                      </a>
+                    </motion.div>
+                  ))}
+                  
+                  <div className="h-px my-3 mx-4 bg-zinc-200 dark:bg-white/5" />
+                  
                   <button 
                     onClick={handleMobileJoinClick}
-                    className="w-full py-6 rounded-3xl text-2xl font-black bg-sky-500 text-white shadow-2xl shadow-sky-500/30 active:scale-[0.98] transition-transform"
+                    className="w-full py-4 rounded-2xl text-base font-black transition-all shadow-xl
+                               bg-sky-500 text-white hover:bg-sky-400 shadow-sky-500/20 active:scale-[0.98]"
                   >
                     Join Priority Access
                   </button>
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           )}
