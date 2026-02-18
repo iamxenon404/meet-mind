@@ -7,7 +7,7 @@ const features = [
     // Emphasis on 'intent', 'deadlines', and 'owners'
     description: (
       <>
-        Our proprietary model identifies <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">intent</span>, <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">deadlines</span>, and <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">owners</span> from messy transcripts with surgical accuracy.
+        Our proprietary model identifies <span className="font-bold text-zinc-900 dark:text-white  tracking-tighter">Intent</span>, <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">deadlines</span>, and <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">owners</span> from messy transcripts with surgical accuracy.
       </>
     ),
     className: "md:col-span-2 md:row-span-2",
