@@ -24,7 +24,7 @@ export default function Home() {
       {/* <Problem /> */}
       {/* <Solution /> */}
       {/* <Demo /> */}
-      <CTA />
+      {/* <CTA /> */}
       <Footer />
     </main>
   );
