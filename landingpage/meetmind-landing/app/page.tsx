@@ -10,6 +10,7 @@ import Problem from "./components/sections/Problem";
 import Solution from "./components/sections/Solution";
 import Features from "./components/sections/Features";
 import TrustBar from "./components/sections/TrustBar";
+import HowItWorks from "./components/sections/HowItWorks";
 
 export default function Home() {
   // 1. Create the global state for the waitlist modal
@@ -24,6 +25,7 @@ export default function Home() {
       <Hero isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <Features />
       <TrustBar />
+      <HowItWorks />
 
       {/* <Problem /> */}
       {/* <Solution /> */}
