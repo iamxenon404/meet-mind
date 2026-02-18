@@ -7,7 +7,7 @@ import CTA from "./components/sections/CTA";
 import Demo from "./components/sections/Demo";
 import Hero from "./components/sections/Hero";
 // import Problem from "./components/sections/Problem";
-import Solution from "./components/sections/Solution";
+// import Solution from "./components/sections/Solution";
 import Features from "./components/sections/Features";
 import TrustBar from "./components/sections/TrustBar";
 import HowItWorks from "./components/sections/HowItWorks";
