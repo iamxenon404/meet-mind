@@ -23,7 +23,7 @@ export default function Home() {
 
       {/* <Problem /> */}
       {/* <Solution /> */}
-      <Demo />
+      {/* <Demo /> */}
       <CTA />
       <Footer />
     </main>
