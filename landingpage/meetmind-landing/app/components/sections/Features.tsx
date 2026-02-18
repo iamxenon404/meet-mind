@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 const features = [
   {
     title: "AI-Powered Extraction",
-    description: "Our proprietary model identifies intent, deadlines, and owners from messy transcripts with 99% accuracy.",
+    // Emphasis on 'intent', 'deadlines', and 'owners'
+    description: (
+      <>
+        Our proprietary model identifies <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">intent</span>, <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">deadlines</span>, and <span className="font-bold text-zinc-900 dark:text-white uppercase tracking-tighter">owners</span> from messy transcripts with surgical accuracy.
+      </>
+    ),
     className: "md:col-span-2 md:row-span-2",
     icon: (
       <svg className="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -14,7 +19,12 @@ const features = [
   },
   {
     title: "Workflow Sync",
-    description: "Instantly push tasks to Notion, Linear, or Jira without leaving the meeting summary.",
+    // Emphasis on 'Notion, Linear, or Jira'
+    description: (
+      <>
+        Instantly push tasks to <span className="text-sky-500 font-bold">Notion</span>, <span className="text-sky-500 font-bold">Linear</span>, or <span className="text-sky-500 font-bold">Jira</span> without leaving your summary.
+      </>
+    ),
     className: "md:col-span-1 md:row-span-1",
     icon: (
       <svg className="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -24,7 +34,12 @@ const features = [
   },
   {
     title: "Agency Insights",
-    description: "Track billable opportunities and scope creep before they become a problem.",
+    // Emphasis on 'billable opportunities'
+    description: (
+      <>
+        Track <span className="font-bold text-zinc-900 dark:text-zinc-100 italic underline decoration-sky-500/30">billable opportunities</span> and scope creep before they hit your margin.
+      </>
+    ),
     className: "md:col-span-1 md:row-span-1",
     icon: (
       <svg className="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -44,13 +59,13 @@ export default function Features() {
             Built for the speed of <br />
             <span className="text-sky-500">modern agencies.</span>
           </h2>
-          <p className="text-zinc-600 dark:text-zinc-400 max-w-xl">
-            MeetMind doesn't just transcribe; it understands the business value of your conversations.
+          <p className="text-zinc-600 dark:text-zinc-400 max-w-xl font-medium">
+            MeetMind doesn't just transcribe; it captures the <span className="font-bold text-zinc-900 dark:text-zinc-100">business value</span> hidden in your conversations.
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px]">
+        {/* Bento Grid - UI Fixed: Changed auto-rows to allow content expansion */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-fr md:auto-rows-[220px]">
           {features.map((feature, i) => (
             <motion.div
               key={i}
@@ -58,16 +73,16 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group relative overflow-hidden rounded-[2rem] border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-900/50 p-8 flex flex-col justify-between hover:border-sky-500/50 transition-colors duration-500 ${feature.className}`}
+              className={`group relative overflow-hidden rounded-[2rem] border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-900/50 p-6 md:p-8 flex flex-col justify-start hover:border-sky-500/50 transition-colors duration-500 ${feature.className}`}
             >
-              <div className="z-10">
-                <div className="w-12 h-12 rounded-2xl bg-white dark:bg-zinc-800 shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+              <div className="z-10 h-full flex flex-col">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-white dark:bg-zinc-800 shadow-sm flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-500 shrink-0">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-[240px]">
+                <h3 className="text-lg md:text-xl font-bold text-zinc-900 dark:text-white mb-2">{feature.title}</h3>
+                <div className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed overflow-hidden">
                   {feature.description}
-                </p>
+                </div>
               </div>
 
               {/* Subtle Decorative Background Glow */}
