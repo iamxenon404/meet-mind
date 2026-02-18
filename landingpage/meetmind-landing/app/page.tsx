@@ -12,6 +12,7 @@ import Features from "./components/sections/Features";
 import TrustBar from "./components/sections/TrustBar";
 import HowItWorks from "./components/sections/HowItWorks";
 import Comparison from "./components/sections/Comparison";
+import FAQ from "./components/sections/FAQ";
 
 export default function Home() {
   // 1. Create the global state for the waitlist modal
@@ -28,6 +29,7 @@ export default function Home() {
       <TrustBar />
       <HowItWorks />
       <Comparison />
+      <FAQ />
 
       {/* <Problem /> */}
       {/* <Solution /> */}
