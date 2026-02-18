@@ -20,47 +20,47 @@ export default function Hero({ isModalOpen, setIsModalOpen }: HeroProps) {
     <section className="relative flex flex-col items-center justify-center px-4 pt-32 pb-20 overflow-hidden text-center transition-colors duration-500 bg-white dark:bg-zinc-950 min-h-screen">
       
       {/* 1. INTERACTIVE BACKGROUND GRID */}
-     {/* 1. AMBIENT LIQUID BACKGROUND */}
-<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-  {/* The Main Light Anchor */}
-  <div className="absolute inset-0 bg-white dark:bg-zinc-950 transition-colors duration-500" />
+      {/* 1. AMBIENT LIQUID BACKGROUND */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* The Main Light Anchor */}
+        <div className="absolute inset-0 bg-white dark:bg-zinc-950 transition-colors duration-500" />
 
-  {/* Large Drifting Orb 1 (Sky Blue) */}
-  <motion.div
-    animate={{
-      x: [0, 100, 0],
-      y: [0, 50, 0],
-    }}
-    transition={{
-      duration: 20,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-    className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full 
-               bg-sky-400/20 dark:bg-sky-600/10 blur-[120px]"
-  />
+        {/* Large Drifting Orb 1 (Sky Blue) */}
+        <motion.div
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full 
+                     bg-sky-400/20 dark:bg-sky-600/10 blur-[120px]"
+        />
 
-  {/* Large Drifting Orb 2 (Indigo/Purple - Adds Depth) */}
-  <motion.div
-    animate={{
-      x: [0, -80, 0],
-      y: [0, 120, 0],
-    }}
-    transition={{
-      duration: 25,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-    className="absolute top-[20%] -right-[5%] w-[40%] h-[60%] rounded-full 
-               bg-indigo-400/10 dark:bg-indigo-600/5 blur-[100px]"
-  />
+        {/* Large Drifting Orb 2 (Indigo/Purple - Adds Depth) */}
+        <motion.div
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 120, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-[20%] -right-[5%] w-[40%] h-[60%] rounded-full 
+                     bg-indigo-400/10 dark:bg-indigo-600/5 blur-[100px]"
+        />
 
-  {/* Substrate Grid (Very Faint) */}
-  <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] brightness-100 contrast-150" />
-  
-  {/* The "Floor" Fade */}
-  <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white dark:from-zinc-950 to-transparent" />
-</div>
+        {/* Substrate Grid (Very Faint) */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] brightness-100 contrast-150" />
+        
+        {/* The "Floor" Fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white dark:from-zinc-950 to-transparent" />
+      </div>
 
       {/* HERO CONTENT */}
       <motion.div
@@ -81,7 +81,7 @@ export default function Hero({ isModalOpen, setIsModalOpen }: HeroProps) {
         </h1>
 
         <p className="max-w-2xl mx-auto mt-6 text-base md:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 px-4">
-          MeetMind automates the gap between "meeting" and "doing." Stop losing requirements in transcriptions—sync tasks directly to your workflow.
+          MeetMind automates the gap between <span className="font-extrabold text-zinc-900 dark:text-zinc-100 uppercase tracking-tight">meeting</span> and <span className="font-extrabold text-zinc-900 dark:text-zinc-100 uppercase tracking-tight">doing</span>. Stop losing requirements in transcriptions—sync tasks directly to your <span className="text-sky-500 font-bold underline decoration-sky-500/30 underline-offset-4">workflow</span>.
         </p>
 
         <div className="flex flex-col items-center justify-center w-full gap-4 mx-auto mt-10 px-4 sm:flex-row">
@@ -116,7 +116,7 @@ export default function Hero({ isModalOpen, setIsModalOpen }: HeroProps) {
                 ✕
               </button>
               <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2">Get Early Access</h3>
-              <p className="text-sm text-zinc-500 mb-6">Join the waitlist for the private agency beta.</p>
+              <p className="text-sm text-zinc-500 mb-6">Join the <span className="text-sky-500 font-bold">Priority Waitlist</span> for the private agency beta.</p>
               <WaitlistForm /> 
             </motion.div>
           </div>
