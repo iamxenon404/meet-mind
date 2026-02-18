@@ -22,7 +22,7 @@ export default function Home() {
       <Hero isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
 
       {/* <Problem /> */}
-      <Solution />
+      {/* <Solution /> */}
       <Demo />
       <CTA />
       <Footer />
