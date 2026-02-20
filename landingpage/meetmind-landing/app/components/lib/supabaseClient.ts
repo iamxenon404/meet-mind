@@ -9,4 +9,4 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn("⚠️ Supabase credentials missing. Client initialized with empty strings.");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);  
