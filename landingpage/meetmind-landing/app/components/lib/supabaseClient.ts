@@ -1,13 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// If keys are missing, we log a warning but DON'T throw an error.
-// This allows the Vercel build process to complete successfully.
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn("⚠️ Supabase credentials missing. Client initialized with empty strings.");
-}
-console.log('url:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-console.log('key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);  
+const createSupabaseClient = () => {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Supabase credentials are missing. Check your environment variables.');
+  }
+  return createClient(supabaseUrl, supabaseAnonKey);
+};
+
+export const supabase = createSupabaseClient();
