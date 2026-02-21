@@ -8,5 +8,6 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn("⚠️ Supabase credentials missing. Client initialized with empty strings.");
 }
-
+console.log('url:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+console.log('key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);  
