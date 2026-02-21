@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-// import { supabase } from "@/lib/supabaseClient"; // Adjust path based on your folders
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { supabase } from "../lib/supabaseClient";
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
+  const [agencyName, setAgencyName] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -14,19 +14,17 @@ export default function WaitlistForm() {
     e.preventDefault();
     setStatus("loading");
 
-    // 1. Insert into your specific table
     const { error } = await supabase
       .from("MMwaitlist")
       .insert([
         { 
-          email: email,
-        //   source: "MeetMind", 
+          email,
+          agency_name: agencyName,
           status: "pending" 
         }
       ]);
 
     if (error) {
-      // Handle the "Unique" constraint error (if they signed up already)
       if (error.code === "23505") {
         setErrorMessage("You're already on the list!");
       } else {
@@ -36,6 +34,7 @@ export default function WaitlistForm() {
     } else {
       setStatus("success");
       setEmail("");
+      setAgencyName("");
     }
   };
 
@@ -50,23 +49,34 @@ export default function WaitlistForm() {
           <p className="text-indigo-400 font-medium">✨ You're on the list! We'll be in touch.</p>
         </motion.div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <input
-            type="email"
+            type="text"
             required
-            placeholder="Agency work email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Agency name"
+            value={agencyName}
+            onChange={(e) => setAgencyName(e.target.value)}
             disabled={status === "loading"}
-            className="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50"
+            className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50"
           />
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-zinc-200 transition-all disabled:opacity-50 active:scale-95"
-          >
-            {status === "loading" ? "Joining..." : "Get Access"}
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <input
+              type="email"
+              required
+              placeholder="Agency work email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === "loading"}
+              className="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-zinc-200 transition-all disabled:opacity-50 active:scale-95"
+            >
+              {status === "loading" ? "Joining..." : "Get Access"}
+            </button>
+          </div>
         </form>
       )}
 
