@@ -83,6 +83,6 @@ export default function WaitlistForm() {
       {status === "error" && (
         <p className="mt-2 text-sm text-red-400">{errorMessage}</p>
       )}
-    </div>
+    </div>  
   );
 }
