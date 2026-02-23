@@ -4,7 +4,7 @@
 # **Meeting Notes → Action Plan SaaS**
 
 **Target Audience:** Freelancers / Solopreneurs (consultants, designers, developers, copywriters)
-**Problem:** Losing track of client calls, forgetting follow-ups, wasting hours on manual notes, looking unprofessional.
+**Problem:** Losing track of client calls, forgetting follow-ups, wasting hours on manual notes, looking unprofessional. 
 
 ---
 
